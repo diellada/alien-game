@@ -49,8 +49,7 @@ class GuardAlien extends Alien {
 }
 
 class QueenAlien extends Alien {
-  // hitPoints = 80;
-  hitPoints=1;
+  hitPoints = 80;
   hitDamage = 7;
 }
 
