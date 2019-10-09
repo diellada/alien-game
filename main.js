@@ -16,8 +16,11 @@ class Alien {
   dead = false;
 
   hitTaken = () => {
-    this.hitPoints  = this.hitPoints - this.hitDamage;
-    console.log(`${this} hit damage: ${this.hitDamage}, hit points: ${this.hitPoints}.`)
+    if (this.hitDamage >= this.hitPoints) {
+      this.hitPoints = 0;
+  } else {
+      this.hitPoints -= this.hitDamage;
+    }
   }
 
   hasDied = () => {
@@ -26,6 +29,12 @@ class Alien {
       this.hitDamage = 0;
     }
     return this.dead;
+  }
+
+  die = () => {
+    this.hitPoints = 0;
+    this.dead = true;
+    this.hasDied();
   }
 }
 
@@ -40,7 +49,8 @@ class GuardAlien extends Alien {
 }
 
 class QueenAlien extends Alien {
-  hitPoints = 80;
+  // hitPoints = 80;
+  hitPoints=1;
   hitDamage = 7;
 }
 
@@ -62,13 +72,16 @@ const createAlien = () => {
 
 const aliens = [...document.getElementsByClassName("alien")];
 
+
 const clickedHitButton = () => {
-  const alienList = createAlien();
+  killAll();
   let randomIndex = Math.floor(Math.random() * (aliens.length));
+  alienList[randomIndex].hitTaken();
 
   if (alienList[randomIndex].hasDied()) {
     aliens[randomIndex].innerHTML = 0;
-    aliens[randomIndex].style.display = "black";
+    aliens[randomIndex].style.backgroundColor = "black";
+    aliens[randomIndex].style.backgroundImage = "url('./spaceship-crash.gif')";
   } else {
       if (randomIndex === 0) {
         aliens[randomIndex].innerHTML = aliens[randomIndex].innerText - 7; 
@@ -77,13 +90,28 @@ const clickedHitButton = () => {
       } else {
         aliens[randomIndex].innerHTML = aliens[randomIndex].innerText - 12;
       }
-      alienList[randomIndex].hitTaken();
   }
-  // return alienList[randomIndex].hitTaken();
 }
 
-// const killAll = () => {
-// // if aliens.dead is true for queen alien = kill all aliens
-// }
+const killAll = () => {
+  if (alienList[0].hasDied()) {
+    alienList.forEach(alien => {
+      alien.die();
+    });
+    aliens.forEach(htmlAlien => {
+      htmlAlien.innerHTML = 0;
+      htmlAlien.style.backgroundImage = "url('./spaceship-crash.gif')";
+      document.getElementById("game").style.display = "none";
+      document.getElementById("game-over").style.display = "flex";
+      document.getElementById("restart").addEventListener("click", restartButton);
+    })
+  }
+}
+
+const restartButton = () => {
+  location.reload();
+}
 
 document.getElementById("hit-button").addEventListener("click", clickedHitButton);
+
+let alienList = createAlien();
