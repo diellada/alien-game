@@ -2,17 +2,54 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 body {
   background-color: black;
+  /* background-image: url(./images/background-space.gif); */
   background-size: cover;
   background-repeat: no-repeat;
   padding: 10px;
 }
 
+#game-start {
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+#game-start, img {
+  width: 400px;
+  height: 400px;
+  margin-left: 100px;
+}
+
+#game-start, h3 {
+  font-family: 'Fascinate Inline', cursive; 
+  font-size: 7vw;
+  margin: 0 5%;
+  align-self: center;
+  justify-self: center;
+}
+
+#start {
+  font-size: 28px;
+  padding: 20px;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+}
+
+#start:hover {
+  transform: scale(1.5);
+  color: green;
+}
+
 #game {
-  display: grid;
+  display: none;
   grid-template-rows: 1fr 3fr 3fr 1fr;
   grid-template-columns: 1fr;
   column-width: 100%;
@@ -23,10 +60,9 @@ body {
 }
 
 .alien {
-  width: 95px; 
-  height: 95px;
+  width: 80px; 
+  height: 80px;
   text-align: center;
-  border-radius: 50%;
   font-size: 20px;
   background-position: center;
   background-size: cover;
@@ -35,11 +71,11 @@ body {
 }
 
 #queen {
-  background-image: url(./queen-green.webp);
+  background-image: url(./images/cleopatra.png);
   background-position: center;
   justify-self: center;
-  height: 100px;
-  width: 100px;
+  height: 90px;
+  width: 90px;
 }
 
 #guards-container {
@@ -54,8 +90,7 @@ body {
 
 
 .guards {
-  border: 2px solid black;
-  background-image: url(./spaceship.webp);
+  background-image: url(./images/egytian-guard-removebg-preview.png);
 
 }
 
@@ -71,28 +106,39 @@ body {
 }
 
 .soldiers {
-  border: 2px solid black;
-  background-image: url(./fly-astro.webp);
+  background-image: url(./images/egytian-cat-removebg-preview.png);
 }
 
 #hit-button {
-  border: 2px solid black;
-  background-image: url(./target.gif);
+  background-image: url(./images/target.gif);
   background-size: cover;
   background-position: center;
   color: white;
   text-align: center;
   display: block;
-  width: 200px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   margin: 15px auto;
+  user-select: none;
+  cursor: pointer; 
+  border-radius: 50%;
+
+}
+
+#hit-button:active {
+  transform: translateY(4px);
+}
+
+#hit-button, p {
+  margin-top: 30px;
+  font-size: bold;
 }
 
 #game-over {
   display: none;
   flex-direction: column;
   justify-content: center;
-  background-image: url(./black-white-space.gif);
+  background-image: url(./images/pyramid-invasion.gif);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -101,16 +147,28 @@ body {
 }
 
 h2 {
-  color: green;
+  color: white;
   font-size: 10vw;
+  font-family: 'Fascinate Inline', cursive;
   text-align: center;
+  margin-bottom: 8vh;
 }
 
 #restart {
   background-color: black;
+  width: 20vw;
+  margin: 0 auto;
+  height: 15vh;
   border: 2px solid white;
   color: white;
   font-size: 2vw;
   font-size: bold;
   display: block;
+  user-select: none;
+  cursor: pointer;
+}
+
+button#restart:hover {
+  opacity: 0.7;
+  background-color: blue;
 }

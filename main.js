@@ -1,14 +1,3 @@
-//Make an alien class with main features of the aliens - main looks, being hit and points being removed, alive = ?
-//functions - damage Function(beginningPoints) : if button clicked - remove points
-// queen die function 
-// hit
-// each alien is inherited from this - make them have different points to start with, different points being removed, give queen special kill, 
-//soldier alien: starts with 60, loose 12, dies when queen dies or when points =0
-//gaurd alien: starts with 68, loose 10, dies when queen dies or when points =0 
-//queen alien: starts with 80, loose 7, dies when points = 0 => everyone dies too=> restart 
-
-//on click - randomly choose an alien to be hit = true, else hit = false
-//when start hit point - hit dmaage points = 0 => dead = true
 
 class Alien {
   hitPoints = 10;
@@ -69,8 +58,12 @@ const createAlien = () => {
   return [queens,soldiers,guards].flat();
 }
 
-const aliens = [...document.getElementsByClassName("alien")];
+const startGame = () => {
+  document.getElementById("game-start").style.display = "none";
+  document.getElementById("game").style.display = "grid";
+}
 
+const aliens = [...document.getElementsByClassName("alien")];
 
 const clickedHitButton = () => {
   killAll();
@@ -80,7 +73,7 @@ const clickedHitButton = () => {
   if (alienList[randomIndex].hasDied()) {
     aliens[randomIndex].innerHTML = 0;
     aliens[randomIndex].style.backgroundColor = "black";
-    aliens[randomIndex].style.backgroundImage = "url('./spaceship-crash.gif')";
+    aliens[randomIndex].style.backgroundImage = "url('./images/spaceship-crash.gif')";
   } else {
       if (randomIndex === 0) {
         aliens[randomIndex].innerHTML = aliens[randomIndex].innerText - 7; 
@@ -99,7 +92,7 @@ const killAll = () => {
     });
     aliens.forEach(htmlAlien => {
       htmlAlien.innerHTML = 0;
-      htmlAlien.style.backgroundImage = "url('./spaceship-crash.gif')";
+      htmlAlien.style.backgroundImage = "url('./images/spaceship-crash.gif')";
       document.getElementById("game").style.display = "none";
       document.getElementById("game-over").style.display = "flex";
       document.getElementById("restart").addEventListener("click", restartButton);
@@ -111,6 +104,7 @@ const restartButton = () => {
   location.reload();
 }
 
+document.getElementById("start").addEventListener("click", startGame);
 document.getElementById("hit-button").addEventListener("click", clickedHitButton);
 
 let alienList = createAlien();
