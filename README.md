@@ -1,3 +1,9 @@
+#Alien Attack Game
+
+This game was created in order to practice use of javascript classes such as class methods and class inheritance. All the characters are inherited from a main character class, and have particular methods based on their functionality within the game.
+
+The game works by hitting a single button which then randomly takes away points from the floating characters within the game. Each set has different hit points, and die once the points reach zero. If the queen character dies, all other characters die and the game ends and a new game can be commenced. 
+
 <!-- # alien-game
 
 You may only use JS / CSS / HTML for this task and no frameworks or libraries. You can use sessions. The whole program should be written in one single file and may be either procedural or object oriented. It should be possible to place the file anywhere within a website and for it to be run in a browser. 
